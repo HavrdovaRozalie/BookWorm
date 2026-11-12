@@ -6,6 +6,8 @@
 //  Long texts go between backticks `like this` and can
 //  have several paragraphs (leave an empty line between).
 //  Leave a text empty (``) to hide that section.
+//  Anything in "spoilers" is hidden behind a
+//  "Show spoilers" button.
 // =====================================================
 const reviews = [
   {
@@ -15,9 +17,8 @@ const reviews = [
     pages: 1000,
     finished: "2026-11-10",
     rating: 5,
-    summary: `I heard a lot of good things about this book, and I was afraid I might be disappointed. Absolutely not! This book was amazing! I fell into the fantasy world right away. Even though it’s over 1000 pages long, I read it so fast. The worldbuilding was incredible. The combination of alchemy and necromancy worked so well, and I wish I could read even more about it.
-
-And Kaine… you broken boy. I’m so sorry for everything that happened to you.
+    summary: `I heard a lot of good things about this book, and I was afraid I might be disappointed. Absolutely not! This book was amazing! I fell into the fantasy world right away. Even though it’s over 1000 pages long, I read it so fast. The worldbuilding was incredible. The combination of alchemy and necromancy worked so well, and I wish I could read even more about it.`,
+    spoilers: `And Kaine… you broken boy. I’m so sorry for everything that happened to you.
 
 I was afraid of the ending. I thought they were going to die, that Kaine would have to kill Helena, and that other awful things would happen. But then it ended “happily.” I was so prepared for everything to end badly that I honestly didn’t know how to feel about the happy ending. I might need to reread it.
 
@@ -82,6 +83,17 @@ function section(heading, text) {
   return `${heading ? `<h4>${heading}</h4>` : ""}<div class="text">${paragraphs(text)}</div>`;
 }
 
+// Spoilers hidden behind a button, shown only when there are some
+function spoilerBox(text) {
+  if (!text || !text.trim()) return "";
+  return `
+    <div class="spoiler-box">
+      <p class="spoiler-note">The rest of this review contains spoilers.</p>
+      <button class="spoiler-toggle" aria-expanded="false">Show spoilers</button>
+      <div class="spoilers text" hidden>${paragraphs(text)}</div>
+    </div>`;
+}
+
 function reviewWord(n) {
   return n === 1 ? "review" : "reviews";
 }
@@ -120,9 +132,21 @@ function render() {
       ${section("What I liked", r.liked)}
       ${section("What I didn't like", r.disliked)}
       ${section("Who should read it", r.recommend)}
+      ${spoilerBox(r.spoilers)}
     </article>
   `).join("");
 }
+
+// Show or hide spoilers when the button is clicked
+list.addEventListener("click", event => {
+  const button = event.target.closest(".spoiler-toggle");
+  if (!button) return;
+  const spoilers = button.nextElementSibling;
+  const open = spoilers.hidden;
+  spoilers.hidden = !open;
+  button.setAttribute("aria-expanded", open);
+  button.textContent = open ? "Hide spoilers" : "Show spoilers";
+});
 
 search.addEventListener("input", render);
 genreFilter.addEventListener("change", render);
