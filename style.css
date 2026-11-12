@@ -1,0 +1,254 @@
+/* ===== Barvy a písma ===== */
+:root {
+  --paper: #F3F4EF;
+  --ink: #1D2421;
+  --forest: #234536;
+  --moss: #6E8073;
+  --gold: #C9962B;
+  --line: #D6DAD0;
+  --card: #FFFFFF;
+
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Source Sans 3", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+}
+
+h2 { font-size: 2rem; color: var(--forest); }
+
+a { color: var(--forest); }
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ===== Hlavička a menu ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.5rem;
+  background: var(--forest);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.menu { display: flex; gap: 1.5rem; }
+
+.menu a {
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.menu a:hover { color: var(--gold); }
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ===== Sekce ===== */
+section, .site-footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  scroll-margin-top: 4rem;
+}
+
+/* ===== Úvod s policí knih ===== */
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: end;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: var(--forest);
+}
+
+.hero p { max-width: 34em; }
+
+.button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  background: var(--forest);
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.button:hover { background: var(--ink); }
+
+/* Hřbety knih poskládané na polici */
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 220px;
+  padding: 0 1rem;
+  border-bottom: 10px solid var(--ink);
+}
+
+.spine {
+  display: block;
+  border-radius: 3px 3px 0 0;
+  transform-origin: bottom;
+  animation: rise 0.6s ease-out backwards;
+}
+
+.s1 { width: 34px; height: 78%; background: var(--forest); animation-delay: 0.05s; }
+.s2 { width: 26px; height: 92%; background: var(--gold); animation-delay: 0.1s; }
+.s3 { width: 42px; height: 70%; background: var(--moss); animation-delay: 0.15s; }
+.s4 { width: 30px; height: 100%; background: #8C3B2E; animation-delay: 0.2s; }
+.s5 { width: 38px; height: 84%; background: var(--ink); animation-delay: 0.25s; }
+.s6 { width: 24px; height: 66%; background: var(--forest); animation-delay: 0.3s; }
+.s7 { width: 46px; height: 58%; background: var(--gold); transform: rotate(-12deg); animation-delay: 0.35s; }
+
+@keyframes rise {
+  from { transform: scaleY(0); }
+}
+
+/* ===== Recenze ===== */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--moss);
+}
+
+.controls input,
+.controls select {
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+  font: inherit;
+  color: var(--ink);
+  min-width: 12rem;
+}
+
+.count { color: var(--moss); font-size: 0.95rem; }
+
+.review-list { display: grid; gap: 1.5rem; }
+
+.review {
+  background: var(--card);
+  border-left: 6px solid var(--forest);
+  padding: 1.5rem 1.75rem;
+}
+
+.review h3 { font-size: 1.6rem; margin-bottom: 0.2em; }
+
+.review .author { margin: 0 0 0.8rem; color: var(--moss); }
+
+.review .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+.stars { color: var(--gold); letter-spacing: 2px; }
+
+.review h4 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin: 1.2rem 0 0.3rem;
+}
+
+.review p { max-width: 65ch; margin: 0; }
+
+.empty {
+  padding: 2rem;
+  background: var(--card);
+  text-align: center;
+}
+
+/* ===== Plány ===== */
+.plans ul { padding-left: 1.2rem; }
+.plans li { margin-bottom: 0.4rem; }
+
+/* ===== Patička ===== */
+.site-footer {
+  border-top: 1px solid var(--line);
+}
+
+.copyright { color: var(--moss); font-size: 0.9rem; }
+
+/* ===== Mobil ===== */
+@media (max-width: 700px) {
+  .menu-toggle { display: block; }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--forest);
+  }
+
+  .menu.open { display: flex; }
+  .menu a { padding: 0.8rem 1.5rem; }
+
+  .hero { grid-template-columns: 1fr; }
+  .shelf { height: 150px; }
+
+  section, .site-footer { padding: 3rem 1rem; }
+  .controls label, .controls input, .controls select { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .spine { animation: none; }
+}

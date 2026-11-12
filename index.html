@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookWorm – recenze knih</title>
+  <meta name="description" content="Recenze knih, které jsem přečetla.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="#uvod" class="logo">BookWorm</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav id="menu" class="menu">
+      <a href="#uvod">Úvod</a>
+      <a href="#recenze">Recenze</a>
+      <a href="#plany">Plány</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="uvod" class="hero">
+      <div class="hero-text">
+        <h1>Knihy, které jsem přečetla, a co si o nich myslím</h1>
+        <p>Píšu sem recenze knih: o čem jsou, co se mi líbilo, co ne a komu bych je doporučila.</p>
+        <a href="#recenze" class="button">Číst recenze</a>
+      </div>
+      <div class="shelf" aria-hidden="true">
+        <span class="spine s1"></span>
+        <span class="spine s2"></span>
+        <span class="spine s3"></span>
+        <span class="spine s4"></span>
+        <span class="spine s5"></span>
+        <span class="spine s6"></span>
+        <span class="spine s7"></span>
+      </div>
+    </section>
+
+    <section id="recenze" class="reviews">
+      <h2>Recenze</h2>
+
+      <div class="controls">
+        <label>
+          Hledat
+          <input type="search" id="search" placeholder="Název nebo autor">
+        </label>
+        <label>
+          Žánr
+          <select id="genre-filter">
+            <option value="">Všechny žánry</option>
+          </select>
+        </label>
+        <label>
+          Řadit
+          <select id="sort">
+            <option value="newest">Nejnovější</option>
+            <option value="rating">Nejlépe hodnocené</option>
+            <option value="title">Podle názvu</option>
+          </select>
+        </label>
+      </div>
+
+      <p id="count" class="count"></p>
+      <div id="review-list" class="review-list"></div>
+    </section>
+
+    <section id="plany" class="plans">
+      <h2>Plány</h2>
+      <p>BookWorm teprve roste. Co chystám dál:</p>
+      <ul>
+        <li>Doporučení knih („když se vám líbila tahle, zkuste tuhle“)</li>
+        <li>Seznam „právě čtu“ a „chci si přečíst“</li>
+        <li>Online čtenářský klub s knihou měsíce</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer id="kontakt" class="site-footer">
+    <h2>Kontakt</h2>
+    <p>Autorka: Rozálie Havrdová · <a href="https://github.com/HavrdovaRozalie">GitHub</a></p>
+    <p class="copyright">© <span id="year"></span> BookWorm</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
