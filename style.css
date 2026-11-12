@@ -1,33 +1,140 @@
-/* ===== Spoilers ===== */
-.review .text p + p { margin-top: 0.9rem; }
+/* ===== Colors and fonts ===== */
+:root {
+  /* Palette */
+  --pastel-earth: #D7CAB7;
+  --olive-green: #71774B;
+  --green-kelp: #383C23;
+  --soiled-pink: #85383E;
+  --dark-burgundy: #3E0911;
 
-.spoiler-box {
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px dashed var(--line);
+  /* Where each color is used */
+  --paper: var(--pastel-earth);   /* page background */
+  --card: #EDE5D9;                /* review background (lighter Pastel Earth) */
+  --ink: var(--dark-burgundy);    /* text */
+  --heading: var(--dark-burgundy);
+  --header: var(--green-kelp);    /* top bar */
+  --accent: var(--soiled-pink);   /* buttons, links, stars */
+  --muted: var(--green-kelp);     /* small secondary text */
+  --line: #BFB09A;
+
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Source Sans 3", Arial, sans-serif;
 }
 
-.review .spoiler-note {
-  font-style: italic;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
-.spoiler-toggle {
-  padding: 0.55rem 1.2rem;
-  background: none;
-  border: 2px solid var(--accent);
-  border-radius: 4px;
-  color: var(--accent);
-  font: inherit;
+h1, h2, h3 {
+  font-family: var(--serif);
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+}
+
+h2 { font-size: 2rem; color: var(--heading); }
+
+a { color: var(--accent); }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===== Header and menu ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.5rem;
+  background: var(--header);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.menu { display: flex; gap: 1.5rem; }
+
+.menu a {
+  color: var(--paper);
+  text-decoration: none;
   font-weight: 600;
+}
+
+.menu a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font: inherit;
   cursor: pointer;
 }
 
-.spoiler-toggle:hover,
-.spoiler-toggle[aria-expanded="true"] {
-  background: var(--accent);
-  color: var(--paper);
+/* ===== Sections ===== */
+section, .site-footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  scroll-margin-top: 4rem;
 }
 
-.spoilers { margin-top: 1.25rem; }
+/* ===== Hero with bookshelf ===== */
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: end;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: var(--heading);
+}
+
+.hero p { max-width: 34em; }
+
+.button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  background: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.button:hover { background: var(--dark-burgundy); }
+
+/* Book spines on a shelf */
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 220px;
+  padding: 0 1rem;
+  border-bottom: 10px solid var(--dark-burgundy);
+}
+
+.spine {
+  display: block;
