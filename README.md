@@ -1,57 +1,58 @@
 # 📚 BookWorm
 
-Webová stránka o knihách. Píšu sem recenze knih, které jsem přečetla, a časem tu přibudou doporučení knih a čtenářský klub.
+A website about books. I write reviews of the books I've read, and over time I'll add book recommendations and a book club.
 
-🔗 **Stránka:** https://havrdovarozalie.github.io/BookWorm/ *(po zveřejnění přes GitHub Pages)*
+🔗 **Website:** https://havrdovarozalie.github.io/BookWorm/
 
-## O projektu
+## About
 
-Každá recenze obsahuje, o čem kniha je, co se mi líbilo, co ne a komu bych ji doporučila. Recenze jde na stránce vyhledávat podle názvu nebo autora, filtrovat podle žánru a řadit podle data nebo hodnocení.
+Each review covers what the book is about, what I liked, what I didn't, and who I would recommend it to. On the site you can search reviews by title or author, filter them by genre, and sort them by date or rating.
 
-## Struktura projektu
+## Project structure
 
 ```
 BookWorm/
-├── index.html   – obsah stránky (úvod, recenze, plány, kontakt)
-├── style.css    – vzhled stránky
-├── script.js    – seznam recenzí a jejich zobrazení
-└── README.md    – tento popis
+├── index.html   – page content (home, reviews, plans, contact)
+├── style.css    – how the page looks
+├── books.js     – every book I've read, with ratings and reviews
+├── script.js    – how the books are displayed
+└── README.md    – this description
 ```
 
-## Jak přidat novou recenzi
+## How to add a book or review
 
-Všechny recenze jsou v souboru `script.js` v seznamu `reviews`. Novou přidáte tak, že zkopírujete jeden blok, oddělíte ho čárkou a přepíšete texty:
+All books live in `books.js`, in the `books` list. Books with a `summary` get a full review card; the others show just the stars and the date read. Text in `spoilers` is hidden behind a "Show spoilers" button. To add a book, copy a block, separate it with a comma, and change the texts:
 
 ```js
 {
-  title: "Název knihy",
-  author: "Jméno autora",
+  title: "Book title",
+  author: "Author name",
   genre: "Fantasy",
   pages: 320,
-  finished: "2026-11-01",
   rating: 4,
-  summary: "O čem kniha je (bez spoilerů).",
-  liked: "Co se mi líbilo.",
-  disliked: "Co se mi nelíbilo.",
-  recommend: "Komu bych ji doporučila."
+  finished: "2026-11-01",
+  summary: `My thoughts on the book (no spoilers).`,
+  spoilers: `The part that gives away the plot.`
 }
 ```
 
-## Plány
+## Plans
 
-- [x] Recenze knih s hodnocením
-- [x] Vyhledávání, filtrování podle žánru a řazení
-- [ ] Zveřejnění přes GitHub Pages
-- [ ] Doporučení knih („když se vám líbila tahle, zkuste tuhle“)
-- [ ] Seznam „právě čtu“ a „chci si přečíst“
-- [ ] Online čtenářský klub s knihou měsíce
+- [x] Book reviews with ratings
+- [x] Search, genre filter and sorting
+- [x] Spoilers hidden behind a button
+- [x] All my read books imported from Goodreads
+- [x] Published with GitHub Pages
+- [ ] Book recommendations ("if you liked this one, try that one")
+- [ ] "Currently reading" and "want to read" lists
+- [ ] An online book club with a book of the month
 
-## Použité technologie
+## Built with
 
 - HTML, CSS, JavaScript
-- Písma Fraunces a Source Sans 3 z Google Fonts
-- Hosting: GitHub Pages
+- Fraunces and Source Sans 3 fonts from Google Fonts
+- Hosted on GitHub Pages
 
-## Autorka
+## Author
 
 Rozálie Havrdová – [GitHub](https://github.com/HavrdovaRozalie)

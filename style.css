@@ -17,7 +17,7 @@
   --muted: var(--green-kelp);     /* small secondary text */
   --line: #BFB09A;
 
-  --serif: "Fraunces", Georgia, serif;
+--serif: "Fraunces", Georgia, serif;
   --sans: "Source Sans 3", Arial, sans-serif;
 }
 
@@ -185,7 +185,9 @@ section, .site-footer {
 
 .count { color: var(--muted); font-size: 0.95rem; }
 
-.review-list { display: grid; gap: 1.5rem; }
+.review-list { display: grid; gap: 0; }
+
+.review { margin: 0.75rem 0; }
 
 .review {
   background: var(--card);
@@ -221,6 +223,59 @@ section, .site-footer {
   padding: 2rem;
   background: var(--card);
   text-align: center;
+}
+
+/* Compact rows for books without a written review */
+.book-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+  padding: 0.7rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.book-row h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.book-row .author {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.book-info {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 701px) {
+  .book-info .date { min-width: 11.5rem; text-align: right; }
+}
+
+.controls .checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-end;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.controls .checkbox input {
+  min-width: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: var(--accent);
 }
 
 /* ===== Spoilers ===== */
@@ -289,6 +344,8 @@ section, .site-footer {
 
   section, .site-footer { padding: 3rem 1rem; }
   .controls label, .controls input, .controls select { width: 100%; }
+  .controls .checkbox { width: auto; }
+  .controls .checkbox input { width: 1.15rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

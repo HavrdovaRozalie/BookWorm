@@ -17,7 +17,7 @@
     <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav id="menu" class="menu">
       <a href="#home">Home</a>
-      <a href="#reviews">Reviews</a>
+      <a href="#reviews">Books</a>
       <a href="#plans">Plans</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -42,7 +42,7 @@
     </section>
 
     <section id="reviews" class="reviews">
-      <h2>Reviews</h2>
+      <h2>Books I've read</h2>
 
       <div class="controls">
         <label>
@@ -62,6 +62,10 @@
             <option value="rating">Highest rated</option>
             <option value="title">Title</option>
           </select>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" id="only-reviews">
+          Only written reviews
         </label>
       </div>
 
@@ -86,6 +90,7 @@
     <p class="copyright">© <span id="year"></span> BookWorm</p>
   </footer>
 
+  <script src="books.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
