@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BookWorm – recenze knih</title>
-  <meta name="description" content="Recenze knih, které jsem přečetla.">
+  <title>BookWorm – book reviews</title>
+  <meta name="description" content="Reviews of the books I have read.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -13,22 +13,22 @@
 <body>
 
   <header class="site-header">
-    <a href="#uvod" class="logo">BookWorm</a>
+    <a href="#home" class="logo">BookWorm</a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav id="menu" class="menu">
-      <a href="#uvod">Úvod</a>
-      <a href="#recenze">Recenze</a>
-      <a href="#plany">Plány</a>
-      <a href="#kontakt">Kontakt</a>
+      <a href="#home">Home</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#plans">Plans</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section id="uvod" class="hero">
+    <section id="home" class="hero">
       <div class="hero-text">
-        <h1>Knihy, které jsem přečetla, a co si o nich myslím</h1>
-        <p>Píšu sem recenze knih: o čem jsou, co se mi líbilo, co ne a komu bych je doporučila.</p>
-        <a href="#recenze" class="button">Číst recenze</a>
+        <h1>Books I have read, and what I think of them</h1>
+        <p>Here I write book reviews: what each book is about, what I liked, what I didn't, and who I would recommend it to.</p>
+        <a href="#reviews" class="button">Read reviews</a>
       </div>
       <div class="shelf" aria-hidden="true">
         <span class="spine s1"></span>
@@ -41,26 +41,26 @@
       </div>
     </section>
 
-    <section id="recenze" class="reviews">
-      <h2>Recenze</h2>
+    <section id="reviews" class="reviews">
+      <h2>Reviews</h2>
 
       <div class="controls">
         <label>
-          Hledat
-          <input type="search" id="search" placeholder="Název nebo autor">
+          Search
+          <input type="search" id="search" placeholder="Title or author">
         </label>
         <label>
-          Žánr
+          Genre
           <select id="genre-filter">
-            <option value="">Všechny žánry</option>
+            <option value="">All genres</option>
           </select>
         </label>
         <label>
-          Řadit
+          Sort by
           <select id="sort">
-            <option value="newest">Nejnovější</option>
-            <option value="rating">Nejlépe hodnocené</option>
-            <option value="title">Podle názvu</option>
+            <option value="newest">Newest</option>
+            <option value="rating">Highest rated</option>
+            <option value="title">Title</option>
           </select>
         </label>
       </div>
@@ -69,20 +69,20 @@
       <div id="review-list" class="review-list"></div>
     </section>
 
-    <section id="plany" class="plans">
-      <h2>Plány</h2>
-      <p>BookWorm teprve roste. Co chystám dál:</p>
+    <section id="plans" class="plans">
+      <h2>Plans</h2>
+      <p>BookWorm is just getting started. Coming next:</p>
       <ul>
-        <li>Doporučení knih („když se vám líbila tahle, zkuste tuhle“)</li>
-        <li>Seznam „právě čtu“ a „chci si přečíst“</li>
-        <li>Online čtenářský klub s knihou měsíce</li>
+        <li>Book recommendations ("if you liked this one, try that one")</li>
+        <li>"Currently reading" and "want to read" lists</li>
+        <li>An online book club with a book of the month</li>
       </ul>
     </section>
   </main>
 
-  <footer id="kontakt" class="site-footer">
-    <h2>Kontakt</h2>
-    <p>Autorka: Rozálie Havrdová · <a href="https://github.com/HavrdovaRozalie">GitHub</a></p>
+  <footer id="contact" class="site-footer">
+    <h2>Contact</h2>
+    <p>Written by Rozálie Havrdová · <a href="https://github.com/HavrdovaRozalie">GitHub</a></p>
     <p class="copyright">© <span id="year"></span> BookWorm</p>
   </footer>
 
