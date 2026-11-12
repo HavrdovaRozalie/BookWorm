@@ -1,12 +1,21 @@
-/* ===== Barvy a písma ===== */
+/* ===== Colors and fonts ===== */
 :root {
-  --paper: #F3F4EF;
-  --ink: #1D2421;
-  --forest: #234536;
-  --moss: #6E8073;
-  --gold: #C9962B;
-  --line: #D6DAD0;
-  --card: #FFFFFF;
+  /* Palette */
+  --pastel-earth: #D7CAB7;
+  --olive-green: #71774B;
+  --green-kelp: #383C23;
+  --soiled-pink: #85383E;
+  --dark-burgundy: #3E0911;
+
+  /* Where each color is used */
+  --paper: var(--pastel-earth);   /* page background */
+  --card: #EDE5D9;                /* review background (lighter Pastel Earth) */
+  --ink: var(--dark-burgundy);    /* text */
+  --heading: var(--dark-burgundy);
+  --header: var(--green-kelp);    /* top bar */
+  --accent: var(--soiled-pink);   /* buttons, links, stars */
+  --muted: var(--green-kelp);     /* small secondary text */
+  --line: #BFB09A;
 
   --serif: "Fraunces", Georgia, serif;
   --sans: "Source Sans 3", Arial, sans-serif;
@@ -31,16 +40,16 @@ h1, h2, h3 {
   margin: 0 0 0.6em;
 }
 
-h2 { font-size: 2rem; color: var(--forest); }
+h2 { font-size: 2rem; color: var(--heading); }
 
-a { color: var(--forest); }
+a { color: var(--accent); }
 
 :focus-visible {
-  outline: 3px solid var(--gold);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* ===== Hlavička a menu ===== */
+/* ===== Header and menu ===== */
 .site-header {
   position: sticky;
   top: 0;
@@ -49,7 +58,7 @@ a { color: var(--forest); }
   align-items: center;
   justify-content: space-between;
   padding: 0.8rem 1.5rem;
-  background: var(--forest);
+  background: var(--header);
 }
 
 .logo {
@@ -68,7 +77,7 @@ a { color: var(--forest); }
   font-weight: 600;
 }
 
-.menu a:hover { color: var(--gold); }
+.menu a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 .menu-toggle {
   display: none;
@@ -81,7 +90,7 @@ a { color: var(--forest); }
   cursor: pointer;
 }
 
-/* ===== Sekce ===== */
+/* ===== Sections ===== */
 section, .site-footer {
   max-width: 960px;
   margin: 0 auto;
@@ -89,7 +98,7 @@ section, .site-footer {
   scroll-margin-top: 4rem;
 }
 
-/* ===== Úvod s policí knih ===== */
+/* ===== Hero with bookshelf ===== */
 .hero {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -99,7 +108,7 @@ section, .site-footer {
 
 .hero h1 {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
-  color: var(--forest);
+  color: var(--heading);
 }
 
 .hero p { max-width: 34em; }
@@ -108,23 +117,23 @@ section, .site-footer {
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.7rem 1.4rem;
-  background: var(--forest);
+  background: var(--accent);
   color: var(--paper);
   text-decoration: none;
   font-weight: 600;
   border-radius: 4px;
 }
 
-.button:hover { background: var(--ink); }
+.button:hover { background: var(--dark-burgundy); }
 
-/* Hřbety knih poskládané na polici */
+/* Book spines on a shelf */
 .shelf {
   display: flex;
   align-items: flex-end;
   gap: 4px;
   height: 220px;
   padding: 0 1rem;
-  border-bottom: 10px solid var(--ink);
+  border-bottom: 10px solid var(--dark-burgundy);
 }
 
 .spine {
@@ -134,19 +143,19 @@ section, .site-footer {
   animation: rise 0.6s ease-out backwards;
 }
 
-.s1 { width: 34px; height: 78%; background: var(--forest); animation-delay: 0.05s; }
-.s2 { width: 26px; height: 92%; background: var(--gold); animation-delay: 0.1s; }
-.s3 { width: 42px; height: 70%; background: var(--moss); animation-delay: 0.15s; }
-.s4 { width: 30px; height: 100%; background: #8C3B2E; animation-delay: 0.2s; }
-.s5 { width: 38px; height: 84%; background: var(--ink); animation-delay: 0.25s; }
-.s6 { width: 24px; height: 66%; background: var(--forest); animation-delay: 0.3s; }
-.s7 { width: 46px; height: 58%; background: var(--gold); transform: rotate(-12deg); animation-delay: 0.35s; }
+.s1 { width: 34px; height: 78%; background: var(--green-kelp); animation-delay: 0.05s; }
+.s2 { width: 26px; height: 92%; background: var(--soiled-pink); animation-delay: 0.1s; }
+.s3 { width: 42px; height: 70%; background: var(--olive-green); animation-delay: 0.15s; }
+.s4 { width: 30px; height: 100%; background: var(--dark-burgundy); animation-delay: 0.2s; }
+.s5 { width: 38px; height: 84%; background: #EDE5D9; animation-delay: 0.25s; }
+.s6 { width: 24px; height: 66%; background: var(--olive-green); animation-delay: 0.3s; }
+.s7 { width: 46px; height: 58%; background: var(--soiled-pink); transform: rotate(-12deg); animation-delay: 0.35s; }
 
 @keyframes rise {
   from { transform: scaleY(0); }
 }
 
-/* ===== Recenze ===== */
+/* ===== Reviews ===== */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -159,7 +168,7 @@ section, .site-footer {
   flex-direction: column;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--moss);
+  color: var(--muted);
 }
 
 .controls input,
@@ -174,19 +183,19 @@ section, .site-footer {
   min-width: 12rem;
 }
 
-.count { color: var(--moss); font-size: 0.95rem; }
+.count { color: var(--muted); font-size: 0.95rem; }
 
 .review-list { display: grid; gap: 1.5rem; }
 
 .review {
   background: var(--card);
-  border-left: 6px solid var(--forest);
+  border-left: 6px solid var(--olive-green);
   padding: 1.5rem 1.75rem;
 }
 
 .review h3 { font-size: 1.6rem; margin-bottom: 0.2em; }
 
-.review .author { margin: 0 0 0.8rem; color: var(--moss); }
+.review .author { margin: 0 0 0.8rem; color: var(--muted); }
 
 .review .meta {
   display: flex;
@@ -196,7 +205,7 @@ section, .site-footer {
   font-size: 0.95rem;
 }
 
-.stars { color: var(--gold); letter-spacing: 2px; }
+.stars { color: var(--accent); letter-spacing: 2px; }
 
 .review h4 {
   font-family: var(--serif);
@@ -212,18 +221,18 @@ section, .site-footer {
   text-align: center;
 }
 
-/* ===== Plány ===== */
+/* ===== Plans ===== */
 .plans ul { padding-left: 1.2rem; }
 .plans li { margin-bottom: 0.4rem; }
 
-/* ===== Patička ===== */
+/* ===== Footer ===== */
 .site-footer {
   border-top: 1px solid var(--line);
 }
 
-.copyright { color: var(--moss); font-size: 0.9rem; }
+.copyright { color: var(--muted); font-size: 0.9rem; }
 
-/* ===== Mobil ===== */
+/* ===== Mobile ===== */
 @media (max-width: 700px) {
   .menu-toggle { display: block; }
 
@@ -235,7 +244,7 @@ section, .site-footer {
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: var(--forest);
+    background: var(--header);
   }
 
   .menu.open { display: flex; }
