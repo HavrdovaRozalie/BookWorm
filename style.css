@@ -214,6 +214,115 @@ section, .site-footer {
   color: var(--leaf-dark);
 }
 
+/* ===== Reading challenge: the enchanted garden ===== */
+.challenge { text-align: center; }
+
+.challenge h2::after { margin-left: auto; margin-right: auto; }
+
+.garden {
+  position: relative;
+  max-width: 580px;
+  margin: 2.5rem auto 0;
+}
+
+.garden svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.garden-text {
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  top: 30%;
+  bottom: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.garden-count {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(4rem, 15vw, 6.5rem);
+  line-height: 0.9;
+  font-variant-numeric: lining-nums;
+  color: var(--merlot);
+}
+
+.garden-goal {
+  margin: 0.3rem 0 0;
+  white-space: pre-line;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  color: var(--sage-dark);
+}
+
+.garden-tale {
+  margin: 0.8rem 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 3.6vw, 1.45rem);
+  line-height: 1.25;
+  color: var(--wine);
+}
+
+.garden-hint {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+  color: var(--sage-dark);
+}
+
+.garden .vine {
+  fill: none;
+  stroke: var(--leaf-dark);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.garden .leaf { fill: var(--sage); stroke: var(--leaf-dark); stroke-width: 1; }
+
+.garden .bloom { cursor: pointer; }
+.garden .bloom .petal { fill: var(--blush); stroke: var(--wine); stroke-width: 1.2; }
+.garden .bloom .heart { fill: var(--wine); }
+.garden .bloom:hover .petal,
+.garden .bloom:focus .petal { fill: #F7E6E1; }
+.garden .bloom:focus { outline: none; }
+.garden .bloom:focus .petal { stroke-width: 2.2; }
+
+.garden .bud { fill: var(--sage-light); stroke: var(--leaf-dark); stroke-width: 1.1; }
+
+.garden .sparkle { fill: var(--wine); opacity: 0.6; }
+
+/* The flowers open one after another when the page loads */
+.garden .bloom > g {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bloom 0.5s ease-out backwards;
+}
+
+@keyframes bloom {
+  from { transform: scale(0) rotate(-40deg); }
+}
+
+.garden-label {
+  font-family: var(--sans);
+  font-size: 15px;
+  fill: var(--merlot);
+}
+
+.garden-tooltip {
+  min-height: 1.6em;
+  margin: 0.5rem 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--merlot);
+}
+
 /* ===== Book list controls ===== */
 .controls {
   display: flex;
@@ -477,4 +586,5 @@ section, .site-footer {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .garden .bloom > g { animation: none; }
 }
