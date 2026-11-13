@@ -1,21 +1,23 @@
 /* ===== Colors and fonts ===== */
 :root {
-  /* Palette */
-  --pastel-earth: #D7CAB7;
-  --olive-green: #71774B;
-  --green-kelp: #383C23;
-  --soiled-pink: #85383E;
-  --dark-burgundy: #3E0911;
+  /* Palette: merlot & moss */
+  --merlot: #4B0F1B;   /* deep wine red */
+  --wine: #7A1F30;     /* lighter wine red */
+  --moss: #5F6B2F;     /* velvet moss green */
+  --sage: #A9B07E;     /* soft green */
+  --stone: #E3D9CB;    /* warm stone */
+  --ivory: #F4EEE4;    /* ivory */
+  --blush: #EEDDD7;    /* dusty blush */
 
   /* Where each color is used */
-  --paper: var(--pastel-earth);   /* page background */
-  --card: #EDE5D9;                /* reviewed books (lighter Pastel Earth) */
-  --ink: var(--dark-burgundy);    /* text */
-  --heading: var(--dark-burgundy);
-  --header: var(--green-kelp);    /* top bar */
-  --accent: var(--soiled-pink);   /* buttons, links, stars */
-  --muted: var(--green-kelp);     /* small secondary text */
-  --line: #BFB09A;
+  --paper: var(--stone);          /* page background */
+  --card: var(--blush);           /* reviewed books */
+  --ink: var(--merlot);           /* text */
+  --heading: var(--merlot);
+  --header: var(--merlot);        /* top bar and home section */
+  --accent: var(--wine);          /* links, stars, spoiler button */
+  --muted: var(--moss);           /* small secondary text */
+  --line: #CBBBA8;
 
   --serif: "Fraunces", Georgia, serif;
   --sans: "Source Sans 3", Arial, sans-serif;
@@ -59,20 +61,21 @@ a { color: var(--accent); }
   justify-content: space-between;
   padding: 0.8rem 1.5rem;
   background: var(--header);
+  box-shadow: 0 1px 0 var(--header);
 }
 
 .logo {
   font-family: var(--serif);
   font-weight: 800;
   font-size: 1.4rem;
-  color: var(--paper);
+  color: var(--ivory);
   text-decoration: none;
 }
 
 .menu { display: flex; gap: 1.5rem; }
 
 .menu a {
-  color: var(--paper);
+  color: var(--ivory);
   text-decoration: none;
   font-weight: 600;
 }
@@ -82,8 +85,8 @@ a { color: var(--accent); }
 .menu-toggle {
   display: none;
   background: none;
-  border: 1px solid var(--paper);
-  color: var(--paper);
+  border: 1px solid var(--ivory);
+  color: var(--ivory);
   padding: 0.3rem 0.8rem;
   border-radius: 4px;
   font: inherit;
@@ -104,11 +107,16 @@ section, .site-footer {
   grid-template-columns: 1.3fr 1fr;
   gap: 3rem;
   align-items: end;
+  color: var(--blush);
+  background: var(--merlot);
+  /* stretch the merlot band to the edges of the screen */
+  box-shadow: 0 0 0 100vmax var(--merlot);
+  clip-path: inset(0 -100vmax);
 }
 
 .hero h1 {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
-  color: var(--heading);
+  color: var(--ivory);
 }
 
 .hero p { max-width: 34em; }
@@ -117,14 +125,14 @@ section, .site-footer {
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.7rem 1.4rem;
-  background: var(--accent);
-  color: var(--paper);
+  background: var(--moss);
+  color: var(--ivory);
   text-decoration: none;
   font-weight: 600;
   border-radius: 4px;
 }
 
-.button:hover { background: var(--dark-burgundy); }
+.button:hover { background: var(--sage); color: var(--merlot); }
 
 /* Book spines on a shelf */
 .shelf {
@@ -133,7 +141,7 @@ section, .site-footer {
   gap: 4px;
   height: 220px;
   padding: 0 1rem;
-  border-bottom: 10px solid var(--dark-burgundy);
+  border-bottom: 10px solid var(--moss);
 }
 
 .spine {
@@ -143,19 +151,19 @@ section, .site-footer {
   animation: rise 0.6s ease-out backwards;
 }
 
-.s1 { width: 34px; height: 78%; background: var(--green-kelp); animation-delay: 0.05s; }
-.s2 { width: 26px; height: 92%; background: var(--soiled-pink); animation-delay: 0.1s; }
-.s3 { width: 42px; height: 70%; background: var(--olive-green); animation-delay: 0.15s; }
-.s4 { width: 30px; height: 100%; background: var(--dark-burgundy); animation-delay: 0.2s; }
-.s5 { width: 38px; height: 84%; background: #EDE5D9; animation-delay: 0.25s; }
-.s6 { width: 24px; height: 66%; background: var(--olive-green); animation-delay: 0.3s; }
-.s7 { width: 46px; height: 58%; background: var(--soiled-pink); transform: rotate(-12deg); animation-delay: 0.35s; }
+.s1 { width: 34px; height: 78%; background: var(--moss); animation-delay: 0.05s; }
+.s2 { width: 26px; height: 92%; background: var(--blush); animation-delay: 0.1s; }
+.s3 { width: 42px; height: 70%; background: var(--sage); animation-delay: 0.15s; }
+.s4 { width: 30px; height: 100%; background: var(--wine); animation-delay: 0.2s; }
+.s5 { width: 38px; height: 84%; background: var(--ivory); animation-delay: 0.25s; }
+.s6 { width: 24px; height: 66%; background: var(--moss); animation-delay: 0.3s; }
+.s7 { width: 46px; height: 58%; background: var(--blush); transform: rotate(-12deg); animation-delay: 0.35s; }
 
 @keyframes rise {
   from { transform: scaleY(0); }
 }
 
-/* ===== Book list controls ===== */
+/* ===== Reviews ===== */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -177,29 +185,10 @@ section, .site-footer {
   padding: 0.5rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: var(--card);
+  background: var(--ivory);
   font: inherit;
   color: var(--ink);
   min-width: 12rem;
-}
-
-.controls .checkbox {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-  align-self: flex-end;
-  padding-bottom: 0.5rem;
-  font-size: 1rem;
-  color: var(--ink);
-  cursor: pointer;
-}
-
-.controls .checkbox input {
-  min-width: 0;
-  width: 1.15rem;
-  height: 1.15rem;
-  margin: 0;
-  accent-color: var(--accent);
 }
 
 .count { color: var(--muted); font-size: 0.95rem; }
@@ -254,7 +243,7 @@ section, .site-footer {
   display: block;
   padding: 0;
   background: var(--card);
-  border-left: 5px solid var(--olive-green);
+  border-left: 5px solid var(--moss);
 }
 
 .has-review summary {
@@ -305,6 +294,25 @@ section, .site-footer {
   margin: 1.2rem 0 0.3rem;
 }
 
+.controls .checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-end;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.controls .checkbox input {
+  min-width: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: var(--moss);
+}
+
 /* ===== Spoilers ===== */
 .spoiler-box {
   margin-top: 1.5rem;
@@ -332,7 +340,7 @@ section, .site-footer {
 .spoiler-toggle:hover,
 .spoiler-toggle[aria-expanded="true"] {
   background: var(--accent);
-  color: var(--paper);
+  color: var(--ivory);
 }
 
 .spoilers { margin-top: 1.25rem; }
@@ -365,6 +373,7 @@ section, .site-footer {
 
   .menu.open { display: flex; }
   .menu a { padding: 0.8rem 1.5rem; }
+  .menu { border-top: 1px solid var(--wine); }
 
   .hero { grid-template-columns: 1fr; }
   .shelf { height: 150px; }
