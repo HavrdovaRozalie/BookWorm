@@ -1,7 +1,7 @@
 // =====================================================
 //  The list of books is in books.js.
 //
-//  READING CHALLENGE: change the number below to set
+//  READING GOAL: change the number below to set
 //  your goal. The counter counts every book in books.js
 //  whose "finished" date is in the current year.
 // =====================================================
@@ -167,7 +167,7 @@ function render() {
   list.innerHTML = shown.map(b => hasReview(b) ? reviewRow(b) : bookRow(b)).join("");
 }
 
-// ===== Reading challenge: the enchanted garden =====
+// ===== Reading goal: the enchanted garden =====
 function drawGarden() {
   const svg = document.getElementById("garden-svg");
   if (!svg) return;
@@ -279,6 +279,35 @@ function drawGarden() {
 }
 
 drawGarden();
+
+// ===== Small reading goal on the right side =====
+function drawGoalMini() {
+  const mini = document.getElementById("goal-mini");
+  if (!mini) return;
+  const read = books.filter(b => readDates(b).some(d => d.startsWith(String(CHALLENGE_YEAR)))).length;
+  const share = Math.min(read / READING_GOAL, 1);
+  mini.setAttribute("aria-label", `Reading goal: ${read} of ${READING_GOAL} books read in ${CHALLENGE_YEAR}`);
+  mini.innerHTML = `
+    <svg viewBox="0 0 60 52" aria-hidden="true">
+      <path class="mini-track" d="M8 50 V27 A22 22 0 0 1 52 27 V50" pathLength="100"/>
+      <path class="mini-progress" d="M8 50 V27 A22 22 0 0 1 52 27 V50" pathLength="100"
+            stroke-dasharray="${share * 100} 100"/>
+    </svg>
+    <span class="mini-count">${read}<span class="mini-goal">/${READING_GOAL}</span></span>
+    <span class="mini-label">books in ${CHALLENGE_YEAR}</span>`;
+  mini.hidden = false;
+
+  // Hide it while the top of the page or the big reading goal is on screen
+  const watched = [document.querySelector(".band-velvet"), document.getElementById("goal")].filter(Boolean);
+  const onScreen = new Set();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target));
+    mini.classList.toggle("is-shown", onScreen.size === 0);
+  });
+  watched.forEach(el => observer.observe(el));
+}
+
+drawGoalMini();
 
 // Show or hide spoilers when the button is clicked
 list.addEventListener("click", event => {

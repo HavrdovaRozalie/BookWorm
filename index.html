@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <nav id="menu" class="menu">
       <a href="#home">Home</a>
       <a href="#about">About me</a>
-      <a href="#challenge">Challenge</a>
+      <a href="#goal">Reading goal</a>
       <a href="#reviews">Books</a>
       <a href="#plans">Plans</a>
       <a href="#contact">Contact</a>
@@ -44,12 +44,13 @@
         <h2>About me</h2>
         <p>Hello, my name is Rosie, and welcome to my book reviews! I've loved books since I was very young. I didn't have many friends, so I spent all my time in the library. Now I'd love to connect with more people who love books.</p>
         <p class="signature">Rosie</p>
+        <p class="about-link">Follow what I'm reading on <a href="https://www.goodreads.com/user/show/40000853-rosie">Goodreads</a>.</p>
       </section>
     </div>
 
     <div class="band band-sage-light">
-      <section id="challenge" class="challenge">
-        <h2>Reading challenge <span id="challenge-year"></span></h2>
+      <section id="goal" class="challenge">
+        <h2>Reading goal <span id="challenge-year"></span></h2>
         <div class="garden">
           <svg id="garden-svg" viewBox="0 0 600 450" role="img" aria-labelledby="garden-summary"></svg>
           <div class="garden-text">
@@ -109,12 +110,15 @@
   <footer id="contact" class="band band-sage">
     <div class="site-footer">
       <h2>Contact</h2>
-      <p>Written by Rosie · <a href="https://github.com/HavrdovaRozalie">GitHub</a></p>
+      <p>Written by Rosie · <a href="https://www.goodreads.com/user/show/40000853-rosie">Goodreads</a> · <a href="https://github.com/HavrdovaRozalie">GitHub</a></p>
       <p class="copyright">© <span id="year"></span> BookWorm</p>
     </div>
   </footer>
 
-  <script src="books.js"></script>
-  <script src="script.js"></script>
+  <!-- Small reading goal that stays on the right while scrolling -->
+  <a class="goal-mini" id="goal-mini" href="#goal" hidden></a>
+
+  <script src="books.js?v=3"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

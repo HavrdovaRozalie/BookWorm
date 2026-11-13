@@ -207,6 +207,13 @@ section, .site-footer {
   color: var(--merlot);
 }
 
+.about .about-link {
+  margin-top: 1.5rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  color: var(--merlot);
+}
+
 .about .signature {
   margin-top: 1.25rem;
   font-style: italic;
@@ -255,10 +262,14 @@ section, .site-footer {
 }
 
 .garden-goal {
-  margin: 0.3rem 0 0;
+  margin: 0.5rem 0 0;
   white-space: pre-line;
-  font-size: clamp(0.95rem, 3vw, 1.1rem);
-  color: var(--sage-dark);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.35rem, 4.4vw, 1.9rem);
+  line-height: 1.2;
+  font-variant-numeric: lining-nums;
+  color: var(--merlot);
 }
 
 .garden-tale {
@@ -321,6 +332,68 @@ section, .site-footer {
   font-style: italic;
   font-size: 1.2rem;
   color: var(--merlot);
+}
+
+/* ===== Small reading goal on the right ===== */
+.goal-mini {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 92px;
+  padding: 0.9rem 0.5rem 0.75rem;
+  background: var(--ivory);
+  border: 1px solid var(--leaf-dark);
+  border-radius: 999px 999px 10px 10px;
+  box-shadow: 0 6px 18px rgba(75, 15, 27, 0.12);
+  color: var(--merlot);
+  text-decoration: none;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(12px, -50%);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+
+.goal-mini.is-shown {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -50%);
+}
+
+.goal-mini:hover { border-color: var(--wine); }
+
+.goal-mini svg { width: 40px; height: auto; }
+
+.goal-mini .mini-track,
+.goal-mini .mini-progress {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.goal-mini .mini-track { stroke: var(--sage-light); }
+.goal-mini .mini-progress { stroke: var(--wine); }
+
+.mini-count {
+  margin-top: 0.3rem;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.7rem;
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+}
+
+.mini-goal { font-size: 1rem; color: var(--sage-dark); }
+
+.mini-label {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--sage-dark);
 }
 
 /* ===== Book list controls ===== */
@@ -582,9 +655,24 @@ section, .site-footer {
   .controls label, .controls input, .controls select { width: 100%; }
   .controls .checkbox { width: auto; }
   .controls .checkbox input { width: 1.15rem; }
+
+  /* small reading goal becomes a little badge in the corner */
+  .goal-mini {
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    width: 70px;
+    padding: 0.6rem 0.3rem 0.5rem;
+    transform: translateY(12px);
+  }
+  .goal-mini.is-shown { transform: none; }
+  .goal-mini svg { width: 30px; }
+  .mini-count { font-size: 1.4rem; margin-top: 0.2rem; }
+  .mini-label { font-size: 0.62rem; white-space: nowrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .garden .bloom > g { animation: none; }
+  .goal-mini { transition: none; }
 }
