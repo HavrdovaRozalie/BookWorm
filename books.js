@@ -5,7 +5,10 @@
 //
 //  To add a book, copy one { ... } block, paste it into
 //  the list (separated by a comma) and change the texts.
-//  - Dates are written as "YYYY-MM-DD" ("" if unknown).
+//  - Dates are written as "YYYY-MM-DD", or just "2026"
+//    if you only know the year ("" if unknown).
+//  - Read a book again? Add rereads: ["2026-05-01"]
+//    (or rereads: ["2026"]) and it counts for that year.
 //  - rating is 1–5, half stars allowed like 3.5 (0 = not rated).
 //  - Long texts go between backticks `like this` and can
 //    have several paragraphs (leave an empty line between).
@@ -120,6 +123,7 @@ What I love about Abby is that she writes things that are genuinely funny, not j
     pages: 623,
     rating: 3,
     finished: "2023-11-27",
+    rereads: ["2026"],
     summary: `Near the end I was sometimes lost in the politics and rules and stuff. Not as good as the first book`
   },
   {
@@ -367,6 +371,13 @@ I don't understand why the book aroused such enthusiasm, from the middle of the 
 
   // ----- Books with only a rating -----
   {
+    title: "I Am Hunger",
+    author: "Petra Dvořáková",
+    genre: "Non-fiction",
+    rating: 0,
+    finished: "2026"
+  },
+  {
     title: "Games: A Love Story",
     author: "Anna Maria Volkova",
     genre: "Romance",
@@ -455,7 +466,8 @@ I don't understand why the book aroused such enthusiasm, from the middle of the 
     author: "Abby Jimenez",
     genre: "Romance",
     rating: 5,
-    finished: "2024-08-25"
+    finished: "2024-08-25",
+    rereads: ["2026"]
   },
   {
     title: "House of Earth and Blood",
@@ -483,7 +495,8 @@ I don't understand why the book aroused such enthusiasm, from the middle of the 
     author: "Sarah J. Maas",
     genre: "Fantasy",
     rating: 5,
-    finished: ""
+    finished: "",
+    rereads: ["2026"]
   },
   {
     title: "Reckless",
@@ -651,7 +664,8 @@ I don't understand why the book aroused such enthusiasm, from the middle of the 
     author: "Ali Hazelwood",
     genre: "Romance",
     rating: 5,
-    finished: "2024-08-11"
+    finished: "2024-08-11",
+    rereads: ["2026"]
   },
   {
     title: "Funny Story",
