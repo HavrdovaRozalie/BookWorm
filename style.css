@@ -343,8 +343,8 @@ section, .site-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 92px;
-  padding: 0.9rem 0.5rem 0.75rem;
+  width: 150px;
+  padding: 1.4rem 0.75rem 1.1rem;
   background: var(--ivory);
   border: 1px solid var(--leaf-dark);
   border-radius: 999px 999px 10px 10px;
@@ -366,12 +366,26 @@ section, .site-footer {
 
 .goal-mini:hover { border-color: var(--wine); }
 
-.goal-mini svg { width: 40px; height: auto; }
+/* a bit smaller on narrower screens so it doesn't cover the books */
+@media (min-width: 701px) and (max-width: 1260px) {
+  /* leave room on the right of the book list for the floating goal */
+  .reviews, .plans { padding-right: 9rem; }
+}
+
+@media (max-width: 1200px) {
+  .goal-mini { width: 112px; padding: 1rem 0.5rem 0.85rem; right: 0.75rem; }
+  .goal-mini svg { width: 50px; }
+  .mini-count { font-size: 2.2rem; }
+  .mini-goal { font-size: 1.2rem; }
+  .mini-label { font-size: 0.82rem; }
+}
+
+.goal-mini svg { width: 68px; height: auto; }
 
 .goal-mini .mini-track,
 .goal-mini .mini-progress {
   fill: none;
-  stroke-width: 5;
+  stroke-width: 4.5;
   stroke-linecap: round;
 }
 
@@ -379,19 +393,19 @@ section, .site-footer {
 .goal-mini .mini-progress { stroke: var(--wine); }
 
 .mini-count {
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
   font-family: var(--serif);
   font-weight: 600;
-  font-size: 1.7rem;
+  font-size: 3rem;
   line-height: 1;
   font-variant-numeric: lining-nums;
 }
 
-.mini-goal { font-size: 1rem; color: var(--sage-dark); }
+.mini-goal { font-size: 1.6rem; color: var(--sage-dark); }
 
 .mini-label {
-  margin-top: 0.35rem;
-  font-size: 0.75rem;
+  margin-top: 0.4rem;
+  font-size: 1rem;
   line-height: 1.2;
   color: var(--sage-dark);
 }
@@ -661,14 +675,15 @@ section, .site-footer {
     top: auto;
     bottom: 1rem;
     right: 1rem;
-    width: 70px;
-    padding: 0.6rem 0.3rem 0.5rem;
+    width: 86px;
+    padding: 0.7rem 0.3rem 0.6rem;
     transform: translateY(12px);
   }
   .goal-mini.is-shown { transform: none; }
-  .goal-mini svg { width: 30px; }
-  .mini-count { font-size: 1.4rem; margin-top: 0.2rem; }
-  .mini-label { font-size: 0.62rem; white-space: nowrap; }
+  .goal-mini svg { width: 36px; }
+  .mini-count { font-size: 1.7rem; margin-top: 0.2rem; }
+  .mini-goal { font-size: 1rem; }
+  .mini-label { font-size: 0.7rem; white-space: nowrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {
