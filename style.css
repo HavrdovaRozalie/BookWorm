@@ -9,7 +9,7 @@
 
   /* Where each color is used */
   --paper: var(--pastel-earth);   /* page background */
-  --card: #EDE5D9;                /* review background (lighter Pastel Earth) */
+  --card: #EDE5D9;                /* reviewed books (lighter Pastel Earth) */
   --ink: var(--dark-burgundy);    /* text */
   --heading: var(--dark-burgundy);
   --header: var(--green-kelp);    /* top bar */
@@ -17,7 +17,7 @@
   --muted: var(--green-kelp);     /* small secondary text */
   --line: #BFB09A;
 
---serif: "Fraunces", Georgia, serif;
+  --serif: "Fraunces", Georgia, serif;
   --sans: "Source Sans 3", Arial, sans-serif;
 }
 
@@ -155,7 +155,7 @@ section, .site-footer {
   from { transform: scaleY(0); }
 }
 
-/* ===== Reviews ===== */
+/* ===== Book list controls ===== */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -183,41 +183,30 @@ section, .site-footer {
   min-width: 12rem;
 }
 
+.controls .checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-end;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.controls .checkbox input {
+  min-width: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
 .count { color: var(--muted); font-size: 0.95rem; }
 
 .review-list { display: grid; gap: 0; }
 
-.review { margin: 0.75rem 0; }
-
-.review {
-  background: var(--card);
-  border-left: 6px solid var(--olive-green);
-  padding: 1.5rem 1.75rem;
-}
-
-.review h3 { font-size: 1.6rem; margin-bottom: 0.2em; }
-
-.review .author { margin: 0 0 0.8rem; color: var(--muted); }
-
-.review .meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
-}
-
 .stars { color: var(--accent); letter-spacing: 2px; }
-
-.review h4 {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  margin: 1.2rem 0 0.3rem;
-}
-
-.review p { max-width: 65ch; margin: 0; }
-
-.review .text p + p { margin-top: 0.9rem; }
 
 .empty {
   padding: 2rem;
@@ -225,15 +214,16 @@ section, .site-footer {
   text-align: center;
 }
 
-/* Compact rows for books without a written review */
+/* ===== Book rows ===== */
 .book-row {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 0.25rem 1.5rem;
-  padding: 0.7rem 0.25rem;
+  padding: 0.7rem 0.75rem;
   border-bottom: 1px solid var(--line);
+  border-left: 5px solid transparent;
 }
 
 .book-row h3 {
@@ -259,23 +249,60 @@ section, .site-footer {
   .book-info .date { min-width: 11.5rem; text-align: right; }
 }
 
-.controls .checkbox {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-  align-self: flex-end;
-  padding-bottom: 0.5rem;
-  font-size: 1rem;
-  color: var(--ink);
+/* Books with a written review: different colour, click to open */
+.book-row.has-review {
+  display: block;
+  padding: 0;
+  background: var(--card);
+  border-left: 5px solid var(--olive-green);
+}
+
+.has-review summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+  padding: 0.7rem 0.75rem;
+  list-style: none;
   cursor: pointer;
 }
 
-.controls .checkbox input {
-  min-width: 0;
-  width: 1.15rem;
-  height: 1.15rem;
-  margin: 0;
-  accent-color: var(--accent);
+.has-review summary::-webkit-details-marker { display: none; }
+
+.has-review summary:hover h3 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.open-hint {
+  flex-basis: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.open-hint::before { content: "▸ "; }
+.has-review[open] .open-hint::before { content: "▾ "; }
+
+.review-body {
+  padding: 0.25rem 1.25rem 1.5rem;
+}
+
+.review-body .pages {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.review-body p { max-width: 65ch; margin: 0; }
+
+.review-body .text p + p { margin-top: 0.9rem; }
+
+.review-body h4 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin: 1.2rem 0 0.3rem;
 }
 
 /* ===== Spoilers ===== */
@@ -285,7 +312,7 @@ section, .site-footer {
   border-top: 1px dashed var(--line);
 }
 
-.review .spoiler-note {
+.spoiler-box .spoiler-note {
   font-style: italic;
   color: var(--muted);
   margin-bottom: 0.75rem;
