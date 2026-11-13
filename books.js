@@ -6,7 +6,7 @@
 //  To add a book, copy one { ... } block, paste it into
 //  the list (separated by a comma) and change the texts.
 //  - Dates are written as "YYYY-MM-DD" ("" if unknown).
-//  - rating is 1–5 (0 = not rated).
+//  - rating is 1–5, half stars allowed like 3.5 (0 = not rated).
 //  - Long texts go between backticks `like this` and can
 //    have several paragraphs (leave an empty line between).
 //  - Anything in "spoilers" is hidden behind a
@@ -366,6 +366,41 @@ I don't understand why the book aroused such enthusiasm, from the middle of the 
   },
 
   // ----- Books with only a rating -----
+  {
+    title: "Games: A Love Story",
+    author: "Anna Maria Volkova",
+    genre: "Romance",
+    rating: 3,
+    finished: "2026-10-13"
+  },
+  {
+    title: "The Help",
+    author: "Kathryn Stockett",
+    genre: "Historical fiction",
+    rating: 5,
+    finished: "2026-10-06"
+  },
+  {
+    title: "The Serpent and the Wolf",
+    author: "Rebecca Robinson",
+    genre: "Fantasy",
+    rating: 5,
+    finished: "2026-09-28"
+  },
+  {
+    title: "Hot for Slayer",
+    author: "Ali Hazelwood",
+    genre: "Romance",
+    rating: 2,
+    finished: "2026-09-10"
+  },
+  {
+    title: "Two Can Play",
+    author: "Ali Hazelwood",
+    genre: "Romance",
+    rating: 1.5,
+    finished: "2026-09-24"
+  },
   {
     title: "Deep End",
     author: "Ali Hazelwood",
