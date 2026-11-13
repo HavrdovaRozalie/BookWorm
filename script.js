@@ -65,28 +65,33 @@ function spoilerBox(b) {
     </div>`;
 }
 
-// Full card for a book with a written review
-function reviewCard(b) {
-  const meta = [
-    stars(b.rating),
-    `<span>${escapeHtml(b.genre)}</span>`,
-    b.pages ? `<span>${b.pages} pages</span>` : "",
-    b.finished ? `<span>Read ${formatDate(b.finished)}</span>` : ""
-  ].join("");
+// Row for a book with a written review: click it to open the review
+function reviewRow(b) {
   return `
-    <article class="review">
-      <h3>${escapeHtml(b.title)}</h3>
-      <p class="author">${escapeHtml(b.author)}</p>
-      <p class="meta">${meta}</p>
-      ${section("", b.summary)}
-      ${section("What I liked", b.liked)}
-      ${section("What I didn't like", b.disliked)}
-      ${section("Who should read it", b.recommend)}
-      ${spoilerBox(b)}
-    </article>`;
+    <details class="book-row has-review">
+      <summary>
+        <div class="book-name">
+          <h3>${escapeHtml(b.title)}</h3>
+          <p class="author">${escapeHtml(b.author)} · ${escapeHtml(b.genre)}</p>
+        </div>
+        <p class="book-info">
+          ${stars(b.rating)}
+          ${b.finished ? `<span class="date">Read ${formatDate(b.finished)}</span>` : ""}
+        </p>
+        <span class="open-hint">Read review</span>
+      </summary>
+      <div class="review-body">
+        ${b.pages ? `<p class="pages">${b.pages} pages</p>` : ""}
+        ${section("", b.summary)}
+        ${section("What I liked", b.liked)}
+        ${section("What I didn't like", b.disliked)}
+        ${section("Who should read it", b.recommend)}
+        ${spoilerBox(b)}
+      </div>
+    </details>`;
 }
 
-// Compact row for a book with only a rating
+// Row for a book with only a rating
 function bookRow(b) {
   return `
     <article class="book-row">
@@ -123,7 +128,7 @@ function render() {
     return;
   }
 
-  list.innerHTML = shown.map(b => hasReview(b) ? reviewCard(b) : bookRow(b)).join("");
+  list.innerHTML = shown.map(b => hasReview(b) ? reviewRow(b) : bookRow(b)).join("");
 }
 
 // Show or hide spoilers when the button is clicked
