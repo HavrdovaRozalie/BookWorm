@@ -267,6 +267,17 @@ section, .site-footer {
 
 .stars { color: var(--leaf-dark); letter-spacing: 2px; }
 
+/* half star: a filled star cut in half over an empty one */
+.half-star { position: relative; display: inline-block; }
+.half-star::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.5em;
+  overflow: hidden;
+}
+
 .empty {
   padding: 2rem;
   background: var(--card);
