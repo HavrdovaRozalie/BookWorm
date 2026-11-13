@@ -81,7 +81,11 @@ function reviewRow(b) {
         <span class="open-hint">Read review</span>
       </summary>
       <div class="review-body">
-        ${b.pages ? `<p class="pages">${b.pages} pages</p>` : ""}
+        <p class="byline">
+          <span class="avatar" aria-hidden="true"></span>
+          <span>Roise's review</span>
+          ${b.pages ? `<span class="pages">· ${b.pages} pages</span>` : ""}
+        </p>
         ${section("", b.summary)}
         ${section("What I liked", b.liked)}
         ${section("What I didn't like", b.disliked)}
