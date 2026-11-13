@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookWorm – book reviews</title>
-  <meta name="description" content="Reviews of the books I have read.">
+  <meta name="description" content="Roise's reviews of the books she has read.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,6 +17,7 @@
     <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav id="menu" class="menu">
       <a href="#home">Home</a>
+      <a href="#about">About me</a>
       <a href="#reviews">Books</a>
       <a href="#plans">Plans</a>
       <a href="#contact">Contact</a>
@@ -24,22 +25,26 @@
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="hero-text">
-        <h1>Books I have read, and what I think of them</h1>
-        <p>Here I write book reviews: what each book is about, what I liked, what I didn't, and who I would recommend it to.</p>
-        <a href="#reviews" class="button">Read reviews</a>
-      </div>
-      <div class="shelf" aria-hidden="true">
-        <span class="spine s1"></span>
-        <span class="spine s2"></span>
-        <span class="spine s3"></span>
-        <span class="spine s4"></span>
-        <span class="spine s5"></span>
-        <span class="spine s6"></span>
-        <span class="spine s7"></span>
-      </div>
-    </section>
+    <div class="band band-velvet">
+      <section id="home" class="hero">
+        <div class="hero-text">
+          <h1>Books I have read, and what I think of them</h1>
+          <p>Honest reviews of fantasy, romance and everything in between: what I loved, what I didn't, and who should read it.</p>
+          <a href="#reviews" class="button">See my books</a>
+        </div>
+        <figure class="portrait">
+          <img src="roise.jpg" alt="Roise looking at the shelves in a bookshop" width="720" height="960">
+        </figure>
+      </section>
+    </div>
+
+    <div class="band band-blush">
+      <section id="about" class="about">
+        <h2>About me</h2>
+        <p>Hello, my name is Roise, and welcome to my book reviews! I've loved books since I was very young. I didn't have many friends, so I spent all my time in the library. Now I'd love to connect with more people who love books.</p>
+        <p class="signature">Roise</p>
+      </section>
+    </div>
 
     <section id="reviews" class="reviews">
       <h2>Books I've read</h2>
@@ -84,10 +89,12 @@
     </section>
   </main>
 
-  <footer id="contact" class="site-footer">
-    <h2>Contact</h2>
-    <p>Written by Rozálie Havrdová · <a href="https://github.com/HavrdovaRozalie">GitHub</a></p>
-    <p class="copyright">© <span id="year"></span> BookWorm</p>
+  <footer id="contact" class="band band-moss">
+    <div class="site-footer">
+      <h2>Contact</h2>
+      <p>Written by Roise · <a href="https://github.com/HavrdovaRozalie">GitHub</a></p>
+      <p class="copyright">© <span id="year"></span> BookWorm</p>
+    </div>
   </footer>
 
   <script src="books.js"></script>
