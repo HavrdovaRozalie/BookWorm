@@ -24,7 +24,10 @@ function hasReview(b) {
 
 function stars(rating) {
   if (!rating) return "";
-  return `<span class="stars" aria-label="Rated ${rating} out of 5">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</span>`;
+  const full = Math.floor(rating);
+  const half = rating - full >= 0.5;
+  const empty = 5 - full - (half ? 1 : 0);
+  return `<span class="stars" aria-label="Rated ${rating} out of 5">${"★".repeat(full)}${half ? '<span class="half-star">☆</span>' : ""}${"☆".repeat(empty)}</span>`;
 }
 
 function formatDate(iso) {
