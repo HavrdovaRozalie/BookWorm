@@ -1,6 +1,15 @@
 // =====================================================
 //  The list of books is in books.js.
-//  You don't need to change anything in this file.
+//
+//  READING CHALLENGE: change the number below to set
+//  your goal. The counter counts every book in books.js
+//  whose "finished" date is in the current year.
+// =====================================================
+const READING_GOAL = 36;
+const CHALLENGE_YEAR = new Date().getFullYear();
+
+// =====================================================
+//  You don't need to change anything below this line
 // =====================================================
 const list = document.getElementById("review-list");
 const search = document.getElementById("search");
@@ -33,6 +42,26 @@ function stars(rating) {
 function formatDate(iso) {
   if (!iso) return "";
   return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+}
+
+// A date can be a full date "2026-08-31" or just a year "2026"
+function readLabel(d) {
+  if (!d) return "";
+  return /^\d{4}$/.test(d) ? `Read in ${d}` : `Read ${formatDate(d)}`;
+}
+
+// Every time a book was read: the first time and any rereads
+function readDates(b) {
+  return [b.finished, ...(b.rereads || [])].filter(Boolean);
+}
+
+function lastRead(b) {
+  return readDates(b).sort().pop() || "";
+}
+
+function rereadNote(b) {
+  if (!b.rereads || !b.rereads.length) return "";
+  return ` · reread in ${b.rereads.map(d => d.slice(0, 4)).join(", ")}`;
 }
 
 function escapeHtml(text) {
@@ -75,11 +104,11 @@ function reviewRow(b) {
       <summary>
         <div class="book-name">
           <h3>${escapeHtml(b.title)}</h3>
-          <p class="author">${escapeHtml(b.author)} · ${escapeHtml(b.genre)}</p>
+          <p class="author">${escapeHtml(b.author)} · ${escapeHtml(b.genre)}${rereadNote(b)}</p>
         </div>
         <p class="book-info">
           ${stars(b.rating)}
-          ${b.finished ? `<span class="date">Read ${formatDate(b.finished)}</span>` : ""}
+          ${b.finished ? `<span class="date">${readLabel(b.finished)}</span>` : ""}
         </p>
         <span class="open-hint">Read review</span>
       </summary>
@@ -104,11 +133,11 @@ function bookRow(b) {
     <article class="book-row">
       <div class="book-name">
         <h3>${escapeHtml(b.title)}</h3>
-        <p class="author">${escapeHtml(b.author)} · ${escapeHtml(b.genre)}</p>
+        <p class="author">${escapeHtml(b.author)} · ${escapeHtml(b.genre)}${rereadNote(b)}</p>
       </div>
       <p class="book-info">
         ${stars(b.rating)}
-        ${b.finished ? `<span class="date">Read ${formatDate(b.finished)}</span>` : ""}
+        ${b.finished ? `<span class="date">${readLabel(b.finished)}</span>` : ""}
       </p>
     </article>`;
 }
@@ -125,7 +154,7 @@ function render() {
 
   if (sort.value === "rating") shown.sort((a, b) => (b.rating || 0) - (a.rating || 0));
   else if (sort.value === "title") shown.sort((a, b) => a.title.localeCompare(b.title, "en"));
-  else shown.sort((a, b) => (b.finished || "").localeCompare(a.finished || ""));
+  else shown.sort((a, b) => lastRead(b).localeCompare(lastRead(a)));
 
   const reviewCount = shown.filter(hasReview).length;
   count.textContent = `${shown.length} ${shown.length === 1 ? "book" : "books"}, ${reviewCount} with a written review`;
@@ -137,6 +166,119 @@ function render() {
 
   list.innerHTML = shown.map(b => hasReview(b) ? reviewRow(b) : bookRow(b)).join("");
 }
+
+// ===== Reading challenge: the enchanted garden =====
+function drawGarden() {
+  const svg = document.getElementById("garden-svg");
+  if (!svg) return;
+  const NS = "http://www.w3.org/2000/svg";
+  const make = (tag, attrs) => {
+    const el = document.createElementNS(NS, tag);
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    return el;
+  };
+
+  // every book read this year, counting rereads, oldest first
+  const readThisYear = books
+    .map(b => ({
+      book: b,
+      date: readDates(b).filter(d => d.startsWith(String(CHALLENGE_YEAR))).sort()[0]
+    }))
+    .filter(entry => entry.date)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const read = readThisYear.length;
+  const goal = READING_GOAL;
+  const left = Math.max(goal - read, 0);
+
+  // Text inside the arch
+  document.getElementById("challenge-year").textContent = CHALLENGE_YEAR;
+  document.getElementById("read-count").textContent = read;
+  document.getElementById("garden-summary").textContent =
+    left > 0
+      ? `of ${goal} books read in ${CHALLENGE_YEAR}\n${left} to go`
+      : `of ${goal} books read in ${CHALLENGE_YEAR}`;
+  const share = read / goal;
+  let tale;
+  if (read === 0) tale = "Once upon a time, a reader opened her first book…";
+  else if (share < 0.25) tale = "The adventure has just begun.";
+  else if (share < 0.5) tale = "Deep in the enchanted forest.";
+  else if (share < 0.75) tale = "Halfway to the castle.";
+  else if (share < 1) tale = "The castle towers are in sight.";
+  else tale = "And she read happily ever after.";
+  document.getElementById("garden-tale").textContent = tale;
+
+  // The arch-shaped vine
+  const vine = make("path", {
+    class: "vine",
+    d: "M 95 440 L 95 215 A 205 205 0 0 1 505 215 L 505 440"
+  });
+  svg.appendChild(vine);
+  const length = vine.getTotalLength();
+  const pointAt = t => vine.getPointAtLength(Math.min(Math.max(t, 0), length));
+
+  // Little leaves between the flowers
+  for (let i = 0; i <= goal; i++) {
+    const t = (i / goal) * length;
+    const p = pointAt(t), q = pointAt(t + 1);
+    const angle = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+    const side = i % 2 === 0 ? -1 : 1;
+    svg.appendChild(make("path", {
+      class: "leaf",
+      d: "M0 0 C 4 -6 12 -8 18 -5 C 12 0 5 2 0 0 Z",
+      transform: `translate(${p.x} ${p.y}) rotate(${angle + side * 50})`
+    }));
+  }
+
+  // One flower or bud for every book in the goal
+  for (let i = 0; i < goal; i++) {
+    const t = ((i + 0.5) / goal) * length;
+    const p = pointAt(t), q = pointAt(t + 1);
+    const angle = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+    const entry = readThisYear[i];
+    const book = entry && entry.book;
+
+    if (book) {
+      const bloom = make("g", { class: "bloom", tabindex: "0", transform: `translate(${p.x} ${p.y})` });
+      const title = make("title", {});
+      title.textContent = book.title;
+      bloom.appendChild(title);
+      const inner = make("g", { style: `animation-delay: ${0.3 + i * 0.06}s` });
+      for (let k = 0; k < 5; k++) {
+        inner.appendChild(make("ellipse", {
+          class: "petal", cx: 0, cy: -7.5, rx: 5.3, ry: 7.8,
+          transform: `rotate(${k * 72 + i * 11})`
+        }));
+      }
+      inner.appendChild(make("circle", { class: "heart", r: 3.4 }));
+      bloom.appendChild(inner);
+      const show = () => {
+        document.getElementById("garden-picked").textContent =
+          `${book.title} · ${entry.date.length === 4 ? "read in " + entry.date : "finished " + formatDate(entry.date)}`;
+      };
+      bloom.addEventListener("click", show);
+      bloom.addEventListener("focus", show);
+      svg.appendChild(bloom);
+    } else {
+      // closed bud, pointing away from the arch
+      svg.appendChild(make("path", {
+        class: "bud",
+        d: "M0 5 C -5.5 0 -3.5 -7 0 -11 C 3.5 -7 5.5 0 0 5 Z",
+        transform: `translate(${p.x} ${p.y}) rotate(${angle - 90})`
+      }));
+    }
+  }
+
+  // A few sparkles above the arch
+  [[300, -22, 9], [180, 8, 6], [420, 8, 6], [48, 110, 5], [552, 110, 5], [118, 52, 3.5], [482, 52, 3.5], [30, 250, 3.5], [570, 250, 3.5]]
+    .forEach(([x, y, r]) => {
+      svg.appendChild(make("path", {
+        class: "sparkle",
+        d: `M ${x} ${y - r} Q ${x} ${y} ${x + r} ${y} Q ${x} ${y} ${x} ${y + r} Q ${x} ${y} ${x - r} ${y} Q ${x} ${y} ${x} ${y - r} Z`
+      }));
+    });
+}
+
+drawGarden();
 
 // Show or hide spoilers when the button is clicked
 list.addEventListener("click", event => {
