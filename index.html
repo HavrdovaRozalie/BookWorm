@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookWorm – book reviews</title>
-  <meta name="description" content="Roise's reviews of the books she has read.">
+  <meta name="description" content="Rosie's reviews of the books she has read.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
     <nav id="menu" class="menu">
       <a href="#home">Home</a>
       <a href="#about">About me</a>
+      <a href="#challenge">Challenge</a>
       <a href="#reviews">Books</a>
       <a href="#plans">Plans</a>
       <a href="#contact">Contact</a>
@@ -43,6 +44,22 @@
         <h2>About me</h2>
         <p>Hello, my name is Rosie, and welcome to my book reviews! I've loved books since I was very young. I didn't have many friends, so I spent all my time in the library. Now I'd love to connect with more people who love books.</p>
         <p class="signature">Rosie</p>
+      </section>
+    </div>
+
+    <div class="band band-sage-light">
+      <section id="challenge" class="challenge">
+        <h2>Reading challenge <span id="challenge-year"></span></h2>
+        <div class="garden">
+          <svg id="garden-svg" viewBox="0 0 600 450" role="img" aria-labelledby="garden-summary"></svg>
+          <div class="garden-text">
+            <p class="garden-count" id="read-count"></p>
+            <p class="garden-goal" id="garden-summary"></p>
+            <p class="garden-tale" id="garden-tale"></p>
+          </div>
+        </div>
+        <p class="garden-tooltip" id="garden-picked" aria-live="polite"></p>
+        <p class="garden-hint">Every flower is a book I finished this year. Tap one to see which.</p>
       </section>
     </div>
 
@@ -78,8 +95,7 @@
       <div id="review-list" class="review-list"></div>
     </section>
 
-    <div class="band band-sage-light">
-      <section id="plans" class="plans">
+    <section id="plans" class="plans">
       <h2>Plans</h2>
       <p>BookWorm is just getting started. Coming next:</p>
       <ul>
@@ -87,8 +103,7 @@
         <li>"Currently reading" and "want to read" lists</li>
         <li>An online book club with a book of the month</li>
       </ul>
-      </section>
-    </div>
+    </section>
   </main>
 
   <footer id="contact" class="band band-sage">
