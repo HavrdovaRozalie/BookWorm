@@ -83,7 +83,7 @@ function reviewRow(b) {
       <div class="review-body">
         <p class="byline">
           <span class="avatar" aria-hidden="true"></span>
-          <span>Roise's review</span>
+          <span>Rosie's review</span>
           ${b.pages ? `<span class="pages">· ${b.pages} pages</span>` : ""}
         </p>
         ${section("", b.summary)}
